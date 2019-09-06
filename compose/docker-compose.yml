@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  app_2:
+    build:
+      context: ./app
+    depends_on:
+      - redis_2
+    environment:
+      - REDIS_HOST=redis_2
+    ports:
+      - "5000:5000"
+  redis_2:
+    image: redis:3.2-alpine
+    volumes:
+      - redis_data:/data
+volumes:
+  redis_data:
